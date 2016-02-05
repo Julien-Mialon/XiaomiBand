@@ -117,20 +117,30 @@ namespace XiaomiBand
 		{
 			await _band.ReadBLEParamsAsync();
 		}
-
-		private async void OnReadLedClicked(object sender, RoutedEventArgs e)
-		{
-			await _band.ReadLedAsync();
-		}
-
+		
 		private async void OnStartLedClicked(object sender, RoutedEventArgs e)
 		{
-			await _band.StartLedAsync(Colors.Red);
+			await _band.SetLedAsync(Colors.Red, true);
 		}
 
 		private async void OnStopLedClicked(object sender, RoutedEventArgs e)
 		{
-			await _band.StopLedAsync(Colors.White);
+			await _band.SetLedAsync(Colors.White, false);
+		}
+
+		private async void OnVibrateWithoutLedClicked(object sender, RoutedEventArgs e)
+		{
+			await _band.StartVibrateAsync(false);
+		}
+
+		private async void OnVibrateWithLedClicked(object sender, RoutedEventArgs e)
+		{
+			await _band.StartVibrateAsync(true);
+		}
+
+		private async void OnStopVibrateClicked(object sender, RoutedEventArgs e)
+		{
+			await _band.StopVibrateAsync();
 		}
 
 		private void Output(IReadOnlyList<GattDeviceService> services)

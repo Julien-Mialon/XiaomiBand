@@ -116,34 +116,37 @@ namespace XiaomiBand.Sdk
 
 		public async Task StartVibrateAsync(bool withLed = false)
 		{
-			byte[] data = (withLed) ? ProtocolData.VibrationWithLed : ProtocolData.VibrationWithoutLed;
+			byte[] data = withLed ? ProtocolData.VibrationWithLed : ProtocolData.VibrationWithoutLed;
 
-			await _io.WriteValueAsync(Services.Vibration, Features.Vibration, data);
+			if (await _io.WriteValueAsync(Features.ControlPoint, data))
+			{
+				Debug.WriteLine("Start vibrate Ok");
+			}
+			else
+			{
+				Debug.WriteLine("Start vibrate KO");
+			}
 		}
 
 		public async Task StopVibrateAsync()
 		{
-			await _io.WriteValueAsync(Services.Vibration, Features.Vibration, ProtocolData.StopVibration);
-		}
-
-		public async Task ReadLedAsync()
-		{
-			byte[] value = await _io.ReadValueAsync(Features.ControlPoint);
-			if (value == null)
+			if (await _io.WriteValueAsync(Features.ControlPoint, ProtocolData.StopVibration))
 			{
-				Debug.WriteLine("Unable to read led state");
-				return;
+				Debug.WriteLine("Stop vibrate Ok");
 			}
-			Debug.WriteLine($"ReadLedAsync() : {string.Join(" ", value.Select(x => x.ToString()))}");
+			else
+			{
+				Debug.WriteLine("Stop vibrate KO");
+			}
 		}
-
-		public async Task StartLedAsync(Color color)
+		
+		public async Task SetLedAsync(Color color, bool flashing)
 		{
 			int red = color.R / 42;
 			int green = color.G / 42;
 			int blue = color.B / 42;
 
-			byte[] data = { ProtocolData.LedStartByte, (byte)red, (byte)green, (byte)blue, ProtocolData.LedEndByteTurnOn };
+			byte[] data = { ProtocolData.LedStartByte, (byte)red, (byte)green, (byte)blue, flashing ? ProtocolData.LedEndByteTurnFlashOn : ProtocolData.LedEndByteTurnFlashOff };
 
 			if (await _io.WriteValueAsync(Features.ControlPoint, data))
 			{
@@ -152,24 +155,6 @@ namespace XiaomiBand.Sdk
 			else
 			{
 				Debug.WriteLine("Led started KO");
-			}
-		}
-
-		public async Task StopLedAsync(Color color)
-		{
-			int red = color.R / 42;
-			int green = color.G / 42;
-			int blue = color.B / 42;
-
-			byte[] data = { ProtocolData.LedStartByte, (byte)red, (byte)green, (byte)blue, ProtocolData.LedEndByteTurnOff };
-
-			if(await _io.WriteValueAsync(Features.ControlPoint, data))
-			{
-				Debug.WriteLine("Led stopped Ok");
-			}
-			else
-			{
-				Debug.WriteLine("Led stopped KO");
 			}
 		}
 	}

@@ -61,11 +61,6 @@
 			<Button HorizontalAlignment="Center"
 					VerticalAlignment="Center"
 					Width="200"
-					Content="Read led state"
-					Click="OnReadLedClicked" />
-			<Button HorizontalAlignment="Center"
-					VerticalAlignment="Center"
-					Width="200"
 					Content="Start Led"
 					Click="OnStartLedClicked" />
 			<Button HorizontalAlignment="Center"
@@ -73,7 +68,21 @@
 					Width="200"
 					Content="Stop Led"
 					Click="OnStopLedClicked" />
-			
+			<Button HorizontalAlignment="Center"
+					VerticalAlignment="Center"
+					Width="200"
+					Content="Vibrate (led)"
+					Click="OnVibrateWithLedClicked" />
+			<Button HorizontalAlignment="Center"
+					VerticalAlignment="Center"
+					Width="200"
+					Content="Vibrate (none)"
+					Click="OnVibrateWithoutLedClicked" />
+			<Button HorizontalAlignment="Center"
+					VerticalAlignment="Center"
+					Width="200"
+					Content="Stop vibrate"
+					Click="OnStopVibrateClicked" />
 		</StackPanel>
 	</Grid>
 </Page>
