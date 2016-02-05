@@ -5,9 +5,11 @@ using System.Linq;
 using Windows.Devices.Bluetooth;
 using Windows.Devices.Bluetooth.GenericAttributeProfile;
 using Windows.Devices.Enumeration;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using XiaomiBand.Sdk;
 
 namespace XiaomiBand
 {
@@ -114,6 +116,21 @@ namespace XiaomiBand
 		private async void OnParamsClicked(object sender, RoutedEventArgs e)
 		{
 			await _band.ReadBLEParamsAsync();
+		}
+
+		private async void OnReadLedClicked(object sender, RoutedEventArgs e)
+		{
+			await _band.ReadLedAsync();
+		}
+
+		private async void OnStartLedClicked(object sender, RoutedEventArgs e)
+		{
+			await _band.StartLedAsync(Colors.Red);
+		}
+
+		private async void OnStopLedClicked(object sender, RoutedEventArgs e)
+		{
+			await _band.StopLedAsync(Colors.White);
 		}
 
 		private void Output(IReadOnlyList<GattDeviceService> services)

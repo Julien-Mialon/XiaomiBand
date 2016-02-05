@@ -9,9 +9,14 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
 		<StackPanel Orientation="Vertical"
 					VerticalAlignment="Center"
 					HorizontalAlignment="Stretch"
+					Grid.Column="0"
 					>
 			<Button HorizontalAlignment="Center"
 					VerticalAlignment="Center"
@@ -46,6 +51,29 @@
 					Width="200"
 					Content="Get params"
 					Click="OnParamsClicked" />
+		</StackPanel>
+
+		<StackPanel Orientation="Vertical"
+					VerticalAlignment="Center"
+					HorizontalAlignment="Stretch"
+					Grid.Column="1"
+					>
+			<Button HorizontalAlignment="Center"
+					VerticalAlignment="Center"
+					Width="200"
+					Content="Read led state"
+					Click="OnReadLedClicked" />
+			<Button HorizontalAlignment="Center"
+					VerticalAlignment="Center"
+					Width="200"
+					Content="Start Led"
+					Click="OnStartLedClicked" />
+			<Button HorizontalAlignment="Center"
+					VerticalAlignment="Center"
+					Width="200"
+					Content="Stop Led"
+					Click="OnStopLedClicked" />
+			
 		</StackPanel>
 	</Grid>
 </Page>

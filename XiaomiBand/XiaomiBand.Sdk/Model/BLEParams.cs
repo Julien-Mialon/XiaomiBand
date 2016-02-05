@@ -1,4 +1,4 @@
-﻿namespace XiaomiBand
+﻿namespace XiaomiBand.Sdk.Model
 {
 	public class BLEParams
 	{
