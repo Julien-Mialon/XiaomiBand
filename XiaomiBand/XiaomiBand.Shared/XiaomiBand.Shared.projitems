@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>0da070e0-3462-488f-bbd1-1debfdcc36de</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>XiaomiBand.Shared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)BluetoothIO.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MiBand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Battery.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\BatteryStatus.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\BLEParams.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Protocol\Descriptors.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Protocol\Features.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Protocol\ProtocolData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Protocol\Services.cs" />
+  </ItemGroup>
+</Project>
